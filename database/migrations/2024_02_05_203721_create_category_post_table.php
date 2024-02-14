@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('category_post', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Post::class);
-            $table->foreignId(Category::class);
+            $table->foreignIdFor(Category::class);
             $table->timestamps();
         });
     }
