@@ -14,8 +14,12 @@ class DatabaseSeeder extends Seeder
     {
 
         // \App\Models\User::factory(10)->create();
-        \App\Models\Post::factory(100)->create();
         \App\Models\Category::factory(5)->create();
+        \App\Models\Post::factory(100)->create();
+        // \App\Models\Post::factory(100)->create()->each(function ($post) {
+        //     $categories = \App\Models\Category::inRandomOrder()->limit(3)->get();
+        //     $post->categories()->attach($categories);
+        // });
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

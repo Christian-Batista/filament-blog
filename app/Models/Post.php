@@ -34,7 +34,12 @@ class Post extends Model
     }
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, "category_post");
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, "post_like")->withTimestamps();
     }
 
     public function scopePublished($query)
@@ -46,7 +51,12 @@ class Post extends Model
     {
         $query->where("featured","=", true);
     }
-
+    public function scopeWithCategory($query, string $category)
+    {
+        $query->whereHas("categories", function($query) use ($category) {
+            $query->where("slug", $category);
+        });
+    }
     public function getExcerpt()
     {
         return Str::limit(strip_tags($this->body), 150);
@@ -58,7 +68,7 @@ class Post extends Model
         return ($mins < 1) ? 1 : $mins;
     }
 
-    public function getThumbnailImage()
+    public function getThumbnailUrl()
     {
         $isUrl = str_contains($this->image, "http");
 
