@@ -5,8 +5,8 @@
                 Welcome to <span class="text-yellow-500">&lt;YELO&gt;</span> <span class="text-gray-900"> News</span>
             </h1>
             <p class="text-gray-500 text-lg mt-1">Best Blog in the universe</p>
-            <a class="px-3 py-2 text-lg text-white bg-gray-800 rounded mt-5 inline-block"
-                href="http://127.0.0.1:8000/blog">Start
+            <a wire:navigate class="px-3 py-2 text-lg text-white bg-gray-800 rounded mt-5 inline-block"
+                href="{{ route("posts.index")}}">Start
                 Reading</a>
         </div>
     @endsection
@@ -16,9 +16,7 @@
             <div class="w-full">
                 <div class="grid grid-cols-3 gap-10 w-full">
                     @foreach ($featuredPosts as $post)
-                        <div class="md:col-span-1 col-span-3">
-                            <x-posts.post-card :post="$post" />
-                        </div>
+                            <x-posts.post-card :post="$post" class="md:col-span-1 col-span-3"/>
                     @endforeach
 
                 </div>
@@ -33,9 +31,7 @@
         <div class="w-full mb-5">
             <div class="grid grid-cols-3 gap-10 gap-y-32 w-full">
                 @foreach ($latestPosts as $post)
-                    <div class="md:col-span-1 col-span-3">
-                        <x-posts.post-card :post="$post" />
-                    </div>
+                        <x-posts.post-card :post="$post" class="md:col-span-1 col-span-3" />
                 @endforeach
 
             </div>
